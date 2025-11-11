@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>爱与抉择（可配bgm《收藏》食用）</title>
+    <title>爱与抉择</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
             font-family: 'Noto Serif SC', 'SimSun', serif;
             background: linear-gradient(135deg, #a8e6cf 0%, #88d8b0 100%);
@@ -18,8 +18,8 @@
             padding: 40px 20px;
             line-height: 1.8;
             color: #2d3748;
+            position: relative;
         }
-
         .container {
             max-width: 900px;
             margin: 0 auto;
@@ -30,18 +30,10 @@
             overflow: hidden;
             animation: fadeIn 1s ease-out;
         }
-
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-
         .header {
             background: linear-gradient(135deg, #a8e6cf 0%, #88d8b0 100%);
             padding: 60px 40px;
@@ -49,45 +41,37 @@
             position: relative;
             overflow: hidden;
         }
-
         .header::before {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
             background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
             animation: rotate 20s linear infinite;
         }
-
         @keyframes rotate {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
         }
-
         h1 {
             font-size: 3em;
             color: white;
             margin-bottom: 15px;
             position: relative;
             z-index: 1;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
             letter-spacing: 4px;
         }
-
         .subtitle {
-            color: rgba(255, 255, 255, 0.9);
+            color: rgba(255,255,255,0.9);
             font-size: 1.1em;
             position: relative;
             z-index: 1;
             font-weight: 300;
         }
-
         .content {
             padding: 50px 60px;
         }
-
         .paragraph {
             margin-bottom: 28px;
             text-indent: 0.5em;
@@ -100,24 +84,15 @@
             border-left: 3px solid transparent;
             transition: all 0.3s ease;
         }
-
         .paragraph:hover {
             border-left-color: #88d8b0;
-            background: rgba(136, 216, 176, 0.05);
+            background: rgba(136,216,176,0.05);
             padding-left: 25px;
         }
-
         @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateX(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
         }
-
         .paragraph:nth-child(1) { animation-delay: 0.1s; }
         .paragraph:nth-child(2) { animation-delay: 0.2s; }
         .paragraph:nth-child(3) { animation-delay: 0.3s; }
@@ -128,63 +103,85 @@
         .paragraph:nth-child(8) { animation-delay: 0.8s; }
         .paragraph:nth-child(9) { animation-delay: 0.9s; }
         .paragraph:nth-child(10) { animation-delay: 1s; }
-
         .dialogue {
-            background: linear-gradient(to right, rgba(136, 216, 176, 0.08), transparent);
+            background: linear-gradient(to right, rgba(136,216,176,0.08), transparent);
             padding: 15px 20px;
             margin: 20px 0;
             border-left: 4px solid #88d8b0;
             border-radius: 0 8px 8px 0;
             font-style: italic;
         }
-
         .section-divider {
             text-align: center;
             margin: 50px 0;
             position: relative;
         }
-
         .section-divider::before {
             content: '❦';
             font-size: 2em;
             color: #88d8b0;
             opacity: 0.5;
         }
-
         .footer {
-            background: rgba(168, 230, 207, 0.8);
+            background: rgba(168,230,207,0.8);
             padding: 30px;
             text-align: center;
             color: #2d5a4a;
             font-size: 0.9em;
-            border-top: 1px solid rgba(136, 216, 176, 0.5);
+            border-top: 1px solid rgba(136,216,176,0.5);
         }
-
         @media (max-width: 768px) {
-            .content {
-                padding: 30px 25px;
-            }
-
-            h1 {
-                font-size: 2em;
-            }
-
-            .paragraph {
-                font-size: 1em;
-            }
-
-            .header {
-                padding: 40px 20px;
-            }
+            .content { padding: 30px 25px; }
+            h1 { font-size: 2em; }
+            .paragraph { font-size: 1em; }
+            .header { padding: 40px 20px; }
+        }
+        ::selection {
+            background: rgba(136,216,176,0.3);
+            color: #2d3748;
         }
 
-        ::selection {
-            background: rgba(136, 216, 176, 0.3);
-            color: #2d3748;
+        /* 音乐控制按钮 */
+        .music-control {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: rgba(52, 152, 219, 0.95);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            z-index: 9999;
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+        .music-control:hover {
+            transform: scale(1.1);
+            background: #2980b9;
+        }
+        .music-control.paused {
+            background: #e74c3c;
+        }
+        .music-control::before {
+            content: 'Playing';
+            font-family: sans-serif;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+        .music-control.paused::before {
+            content: 'Paused';
         }
     </style>
 </head>
 <body>
+
     <div class="container">
         <div class="header">
             <h1>爱与抉择</h1>
@@ -368,5 +365,46 @@
             <p style="margin-top: 10px; font-size: 0.85em;">爱,是一场浩大的冒险(陆朴999999999)</p>
         </div>
     </div>
+<!-- 背景音乐 -->
+    <audio id="bgMusic" loop>
+        <source src="dangerous-moves-411591.mp3" type="audio/mpeg">
+        您的浏览器不支持音频播放。
+    </audio>
+
+    <!-- 音乐控制按钮 -->
+    <div id="musicControl" class="music-control" title="点击暂停/播放背景音乐">
+        Playing
+    </div>
+
+    <script>
+        const audio = document.getElementById('bgMusic');
+        const control = document.getElementById('musicControl');
+
+        // 首次交互后自动播放
+        let hasInteracted = false;
+        document.body.addEventListener('click', function unlockAudio() {
+            if (!hasInteracted) {
+                audio.play().catch(() => {});
+                hasInteracted = true;
+            }
+            document.body.removeEventListener('click', unlockAudio);
+        }, { once: true });
+
+        // 点击按钮切换播放/暂停
+        control.addEventListener('click', () => {
+            if (audio.paused) {
+                audio.play();
+                control.classList.remove('paused');
+            } else {
+                audio.pause();
+                control.classList.add('paused');
+            }
+        });
+
+        // 同步按钮状态
+        audio.addEventListener('play', () => control.classList.remove('paused'));
+        audio.addEventListener('pause', () => control.classList.add('paused'));
+    </script>
+
 </body>
 </html>
